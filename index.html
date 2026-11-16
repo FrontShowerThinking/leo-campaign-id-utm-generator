@@ -6,6 +6,10 @@
     <meta hhtp-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <meta name="robots" content="noindex, nofollow">
+    <!-- Favicon: LEO logo (tab icon, and home screen icon on iPhone) -->
+    <link rel="icon" href="assets/img/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
     <link rel="stylesheet" type="text/css" href="helperV2.css">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
@@ -15,23 +19,23 @@
     </title>
 </head>
 
-<body bgcolor="#68a17c">
+<body>
     <section class="wrapper-col ">
-        <div class="" id="logoBox" style="">
+        <div id="logoBox">
             <img src="assets/img/logreen.png">
         </div>
         <!-- Pre-form Tag Generator -->
-        <div class="preform-txt col" id="preform-txt-box"><strong style="text-transform: uppercase;">Campaign ID & UTM Generator</strong></div>
+        <div class="preform-txt col" id="preform-title"><strong>Campaign ID & UTM Generator</strong></div>
         <br>
-        <div class="preform-txt col" id="preform-txt-box">Click on the button to generate the Campaign ID.</div>
-        <form onsubmit="" class="col" style="font-family: Arial, sans-serif;">
+        <div class="preform-txt col" id="preform-intro">Click on the button to generate the Campaign ID.</div>
+        <form class="col">
             <table class="tg ">
                 <!-- LABEL -->
                 <tr class="main-label">
-                    <td colspan="2" class="main-label" style="">
+                    <td colspan="2" class="main-label">
                         <div class="text-label ">CAMPAIGN ID GENERATOR</div>
                         <div class="cont-logo">
-                            <img class="logo-label" src="assets/img/leo-logo.png" style="filter: invert(1);max-width: 55px;">
+                            <img class="logo-label" src="assets/img/leo-logo.png">
                         </div>
                     </td>
                 </tr>
@@ -47,7 +51,7 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
+                        <span class="option-wrap">
                             <select class="sel-code req country-input" required="">
                                 <option value="" disabled selected>Select country</option>
                                 <option value="DZ">Algeria (DZ)</option>
@@ -114,23 +118,23 @@
                         <div class="infobox">Date when the materials are sent to the Production Team.</div></span>
                     </td>
                     <!-- option selector column -->
-                    <td class="option-col" style="">
-                        <div class="" id="containerDate">
-                            <span class="" style="font-weight:normal;color:white;text-align: center;right: 25%;" class="">
-                                <input type="text" name="date" class="sel-code" value="" style="display: none;">
-                                <span style="font-size: 0.8em;">
-                                    <select id="year" class="mask" onchange="setDate()">
+                    <td class="option-col">
+                        <div id="containerDate">
+                            <span class="date-wrap">
+                                <input type="text" name="date" class="sel-code" value="">
+                                <span class="year-wrap">
+                                    <select id="year" class="mask">
                                         <option value="" disabled selected>YYYY</option>
                                         <option value="2022">2022</option>
                                         <option value="2023">2023</option>
                                         <option value="2024">2024</option>
                                         <option value="2025">2025</option>
                                         <option value="2026">2026</option>
-                                        <option value="2026">2027</option>
+                                        <option value="2027">2027</option>
                                     </select>
                                 </span>
                                 <span>/</span>
-                                <select id="month" class="mask" required="" onchange="setDate()">
+                                <select id="month" class="mask" required="">
                                     <option value="" disabled selected>MM</option>
                                     <option value="01">01</option>
                                     <option value="02">02</option>
@@ -162,7 +166,7 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
+                        <span class="option-wrap">
                             <select class="sel-code req" required="" id="source">
                                 <option value="" disabled selected>Select your source</option>
                                 <option value="AE">Approved Email</option>
@@ -188,7 +192,7 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
+                        <span class="option-wrap">
                             <select class="sel-code req" required="">
                                 <option value="" disabled selected>Select the speciality</option>
                                 <option value="HC">All HCPs (non sends)</option>
@@ -223,7 +227,7 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
+                        <span class="option-wrap">
                             <select class="sel-code req" required="">
                                 <option value="" disabled selected>Select the category</option>
                                 <option value="AB">Above Brand</option>
@@ -246,7 +250,7 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
+                        <span class="option-wrap">
                             <select class="sel-code req" required="">
                                 <option value="" disabled selected>Select the product/topic</option>
                                 <option value="" disabled>-Products-</option>
@@ -288,8 +292,8 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
-                            <input name="campName" id="campName" class="req sel-code tag-txt" type="text" value="" placeholder="max. 30 char." maxlength="30" style="width:180px;border-radius: 8px white; height: 20px;">
+                        <span class="option-wrap">
+                            <input name="campName" id="campName" class="req sel-code tag-txt" type="text" value="" placeholder="max. 30 char." maxlength="30">
                     </td>
                 </tr>
                 <!-- ******************************************
@@ -305,8 +309,8 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
-                            <input name="mailDesc" id="mailDesc" class="req sel-code tag-txt" type="text" value="" placeholder="max. 25 char." maxlength="25" style="width:180px;border-radius: 8px white; height: 20px;">
+                        <span class="option-wrap">
+                            <input name="mailDesc" id="mailDesc" class="req sel-code tag-txt" type="text" value="" placeholder="max. 25 char." maxlength="25">
                         </span>
                     </td>
                 </tr>
@@ -324,7 +328,7 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
+                        <span class="option-wrap">
                             <select class="sel-code req" required="" id="actType">
                                 <option value="" disabled selected>Select the Campaign Type</option>
                                 <option value="AE">Approved Email</option>
@@ -356,8 +360,9 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
-                            <select class="sel-code req" required="">
+                        <span class="option-wrap">
+                            <!-- data-sep="": joined to the CTA Category with no dash (e.g. 6 + 10 = "610") -->
+                            <select class="sel-code req" required="" data-sep="">
                                 <option value="" disabled selected>Select the Content Category</option>
                                 <option value="6">Corporate</option>
                                 <option value="0">Informative</option>
@@ -384,7 +389,7 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
+                        <span class="option-wrap">
                             <select class="sel-code req" required="">
                                 <option value="" disabled selected>Select the CTA Category</option>
                                 <option value="1">Click to Web</option>
@@ -414,7 +419,7 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
+                        <span class="option-wrap">
                             <select class="sel-code req" required="">
                                 <option value="" disabled selected>Select the Business Unit</option>
                                 <option value="D">Dermatology</option>
@@ -427,12 +432,12 @@
         </form>
         <!-- Create Code button -->
         <button id="tagger" class="col">
-            <span class="col" style="font-family: &#39;IBM Plex Sans&#39;, Arial, sans-serif;">Create Code</span>
+            <span class="col">Create Code</span>
         </button>
         <!-- Content Code Creator -->
-        <table class="col table-code" id="tagBox" style="">
-            <tr style="height: 4vh;width: 40%;">
-                <td style="position: relative;width: 100%;font-size: 22px;">
+        <table class="col table-code" id="tagBox">
+            <tr class="code-title-row">
+                <td class="code-title">
                     <span>
                         Final content name or ID:
                         <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
@@ -440,17 +445,13 @@
                     </span>
                 </td>
             </tr>
-            <tr style="display: inline-flex;">
+            <tr class="code-row">
                 <td class="bgCode">
                     <div class="white-square">
                         <!-- 
               FINAL CODE 
             -->
-                        <input value="" name="finalTag" id="finalCode" type="text" class="white-square container-code" readonly="readonly">
-                        <!-- 
-              FINAL CODE CONT
-             -->
-                        <div id="finalCodeCont" class="finalCodeHyde" style="width: 100%;display: none;"></div>
+                        <input value="" name="finalTag" id="tagCode" type="text" class="white-square container-code" readonly="readonly">
                     </div>
                 </td>
                 <!-- copy clipboard button -->
@@ -474,11 +475,11 @@
 **************************************************** -->
         <!-- Pre-form UTM Generator -->
         <div class="preform-txt col" id="pre-utm">After using the above Campaign ID Generator to generate your content ID,<br>use this UTM Link Generator to generate a link with your content ID and other relevant parameters.</div>
-        <form onsubmit="return false" class="col" style="font-family: Arial, sans-serif;">
+        <form class="col">
             <table class="tg" id="utmTable">
                 <!--  LABEL -->
                 <tr class="main-label">
-                    <td colspan="2" class="main-label" style="">
+                    <td colspan="2" class="main-label">
                         <div class="text-label" id="utmLabel">UTM GENERATOR</div>
                     </td>
                 </tr>
@@ -494,8 +495,8 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
-                            <input class="utmTxt utmTxt-req" required="" placeholder="https://www.yourlink.com">
+                        <span class="option-wrap">
+                            <input class="utmTxt utmTxt-req" required="" placeholder="https://www.yourlink.com" data-key="link">
                         </span>
                     </td>
                     <!--  **********************************************
@@ -510,8 +511,8 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
-                            <input id="utmSource" class="utmTxt utmTxt-req" type="text" readonly style="display: block;">
+                        <span class="option-wrap">
+                            <input id="utmSource" data-key="utm_source" class="utmTxt utmTxt-req" type="text" readonly>
                         </span>
                     </td>
                 </tr>
@@ -527,8 +528,8 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
-                            <input id="utmMedium" class="utmTxt utmTxt-req" type="text" readonly style="display: block;">
+                        <span class="option-wrap">
+                            <input id="utmMedium" data-key="utm_medium" class="utmTxt utmTxt-req" type="text" readonly>
                         </span>
                     </td>
                 </tr>
@@ -544,8 +545,8 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
-                            <input id="utmCampaign" class="utmTxt utmTxt-req" type="text" readonly style="display: block;">
+                        <span class="option-wrap">
+                            <input id="utmCampaign" data-key="utm_campaign" class="utmTxt utmTxt-req" type="text" readonly>
                             <!-- <div class="utmFake">{{campaignName}}</div> -->
                         </span>
                     </td>
@@ -562,8 +563,8 @@
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
-                            <input id="utmContent" class="utmTxt utmTxt-req" type="text" readonly value="">
+                        <span class="option-wrap">
+                            <input id="utmContent" data-key="utm_content" class="utmTxt utmTxt-req" type="text" readonly value="">
                         </span>
                     </td>
                 </tr>
@@ -573,15 +574,15 @@
                 <tr>
                     <!-- label name column -->
                     <td class="label-col">
-                        <span class="text-table">Term<font style="font-size:75%;"> (not required)</font>
+                        <span class="text-table">Term<span class="label-note"> (not required)</span>
                             <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
                             <div class="infobox">Use this field for any other attributes you want to include or track. This can be a term to distinguish one link from another, such as "utm_term=target", or it can pull an attribute from the SFMC database, such as %%AccountId%%, to track a specific attribute of each subscriber that clicks.</div></span>
                         </span>
                     </td>
                     <!-- option selector column -->
                     <td class="option-col">
-                        <span style="font-weight:normal;color:#000">
-                            <input id="utmTarget" class="utmTxt" type="text" name="target" value="" placeholder="max. 25 char." maxlength="25">
+                        <span class="option-wrap">
+                            <input id="utmTarget" data-key="utm_term" class="utmTxt" type="text" name="target" value="" placeholder="max. 25 char." maxlength="25">
                         </span>
                     </td>
                 </tr>
@@ -590,35 +591,31 @@
         </form>
         <!-- UTM Link Button -->
         <button class="col" id="utmGen">
-            <span class="col" style="font-family: &#39;IBM Plex Sans&#39;, Arial, sans-serif;">Generate Link</span>
+            <span class="col">Generate Link</span>
         </button>
         <!-- Link UTM block -->
-        <table class="col table-code " style="">
-            <tr style="height: 4vh;width: 40%;">
-                <td style="position: relative;width: 100%;font-size: 22px;">
+        <table class="col table-code" id="utmBox">
+            <tr class="code-title-row">
+                <td class="code-title">
                     <span>Final UTM Link:
                         <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
-                        <div class="infobox" style="max-width: 600px !important;width: 600px;">If you need to make adjustments to the complete generated UTM URL: If the change is to the initial "Link" itself, return to the "UTM Generator" form and adjust the link, then click the "Generate Link" button again to see the changes reflected. For any other changes, return to the "Campaign ID Generator" form and make the changes, click the "Create Code" button, then click the "Generate Link" button from the "UTM Generator."</div></span>
+                        <div class="infobox infobox--wide">If you need to make adjustments to the complete generated UTM URL: If the change is to the initial "Link" itself, return to the "UTM Generator" form and adjust the link, then click the "Generate Link" button again to see the changes reflected. For any other changes, return to the "Campaign ID Generator" form and make the changes, click the "Create Code" button, then click the "Generate Link" button from the "UTM Generator."</div></span>
                     </span>
                 </td>
             </tr>
-            <tr style="display: inline-flex;">
+            <tr class="code-row">
                 <td class="bgCode">
                     <div class="white-square">
-                        <!-- VISIBLE UTM INPUT -->
-                        <textarea name="finalUtm" readonly="readonly" id="finalCode" rows="1" class="white-square container-code container-code--wrap"></textarea>
-                        <!-- HIDDEN UTM CODE -->
-                        <div id="finalCodeCont" class="" style="width: 100%;display: none;"></div>
+                        <!-- FINAL UTM LINK (textarea so the whole link is visible) -->
+                        <textarea name="finalUtm" readonly="readonly" id="utmCode" rows="1" class="white-square container-code container-code--wrap"></textarea>
                     </div>
                 </td>
                 <!-- copy clipboard button -->
-                <td onclick="" class="cont-icon copy-icon">
+                <td class="cont-icon copy-icon">
                     <img class="icon " src="assets/img/copy.png" alt="copy to clipboard" title="Copy to clipboard">
-                    <!-- Animated Message -->
-                    <span class="copy-icon-message" aria-hidden="true">Copied!</span>
                 </td>
                 <!-- edit clipboard button -->
-                <td onclick="" class="cont-icon edit-icon">
+                <td class="cont-icon edit-icon">
                     <img class="icon" src="assets/img/edit.png" alt="Edit code" title="Edit code">
                 </td>
                 <td class="cont-icon confirm-icon">

@@ -144,7 +144,7 @@ hr {
     max-width: 640px;
 }
 
-#preform-txt-box:first-of-type,
+#preform-title,
 .preform-txt strong {
     display: inline-block;
     font-size: 1.6em;
@@ -351,6 +351,16 @@ form table tbody {
     pointer-events: none;
 }
 
+/* Last row of a card: open the tooltip upwards. The card (.tg) needs
+   overflow: hidden for its rounded corners, which would cut off a
+   tooltip that drops below its bottom edge (Business Unit, Term). */
+.tg tr:last-child .infobox {
+    top: auto;
+    bottom: 100%;
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+
 /*-----------FORM CONTROLS------------*/
 
 select,
@@ -437,7 +447,7 @@ input[readonly] {
 }
 
 .utmTxt[readonly],
-input[readonly]:not(#finalCode) {
+input[readonly]:not(.container-code) {
     background-color: var(--color-bg-input);
 }
 
@@ -600,7 +610,8 @@ option {
     padding-left: 10px;
 }
 
-#containerDate span[style] {
+#containerDate .date-wrap,
+#containerDate .year-wrap {
     color: var(--color-text-muted) !important;
     font-weight: 600;
 }
@@ -710,9 +721,10 @@ button:active {
     color: var(--color-primary-dark);
 }
 
-/* #finalCode is reused for both result boxes; an ID selector is needed
-   here to outrank the generic input[type="text"] sizing rule above. */
-#finalCode.container-code {
+/* Result boxes (#tagCode / #utmCode): the ID selectors are needed here
+   to outrank the generic input[type="text"] sizing rule above. */
+#tagCode.container-code,
+#utmCode.container-code {
     width: 100%;
     max-width: 100%;
     height: 46px;
@@ -721,7 +733,7 @@ button:active {
 /* UTM result box: a textarea that wraps the full link and grows with
    it (script.js resizes it to its scrollHeight), so long UTMs are never
    clipped. break-all lets the URL break anywhere, since it has no spaces. */
-#finalCode.container-code--wrap {
+#utmCode.container-code--wrap {
     display: block;
     height: auto;
     min-height: 46px;
@@ -739,10 +751,20 @@ button:active {
     box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.15);
 }
 
-#finalCodeCont {
-    opacity: 0;
-    height: 0;
-    overflow: hidden;
+/* Read-only result box: clicking it (to select the text) must not light
+   it up as if it were an error - keep the normal border, no ring. */
+.container-code[readonly]:focus {
+    border-color: var(--color-border-strong);
+    box-shadow: none;
+}
+
+/* Set by script.js on the result box: being edited / edit confirmed */
+.container-code.is-editing {
+    border: 2px solid skyblue;
+}
+
+.container-code.is-confirmed {
+    border: 2px solid var(--color-accent);
 }
 
 /*-----------ACTION ICONS (copy / edit / confirm)------------*/
@@ -785,25 +807,6 @@ button:active {
 .confirm-icon,
 .edit-icon {
     display: none;
-}
-
-.copy-icon-message {
-    background: var(--color-primary-dark);
-    border-radius: var(--radius-sm);
-    color: var(--color-white);
-    display: block;
-    font-size: 0.72em;
-    font-weight: 600;
-    opacity: 0;
-    padding: 6px 12px;
-    position: absolute;
-    border: none;
-    z-index: 12;
-    text-shadow: none;
-    box-shadow: var(--shadow-sm);
-    top: -38px !important;
-    right: 0;
-    white-space: nowrap;
 }
 
 .utmFake {
@@ -898,7 +901,7 @@ input.sel-code {
         left: 16px;
     }
     .preform-txt strong,
-    #preform-txt-box:first-of-type {
+    #preform-title {
         font-size: 1.3em;
     }
     .table-code tr:last-child {
@@ -908,4 +911,128 @@ input.sel-code {
     .bgCode {
         flex: 1 1 100%;
     }
+}
+
+
+/*-----------FORMER INLINE STYLES------------
+   These rules used to be style="" attributes in index.html. The
+   selectors are specific enough to keep the same priority they had
+   inline, so the page looks exactly the same. */
+
+.preform-txt strong {
+    text-transform: uppercase;
+}
+
+form.col {
+    font-family: Arial, sans-serif;
+}
+
+.tg .logo-label {
+    filter: invert(1);
+    max-width: 55px;
+}
+
+/* Wrapper of each select/input in the right-hand column */
+.option-wrap {
+    font-weight: normal;
+    color: #000;
+}
+
+#containerDate .date-wrap {
+    font-weight: normal;
+    text-align: center;
+    right: 25%;
+}
+
+#containerDate .year-wrap {
+    font-size: 0.8em;
+}
+
+/* Hidden YYYYMM field filled by the year/month selects */
+#containerDate input[name="date"] {
+    display: none;
+}
+
+#campName.tag-txt,
+#mailDesc.tag-txt {
+    width: 180px;
+    height: 20px;
+}
+
+#tagger span,
+#utmGen span {
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+}
+
+/* Result blocks: title row ("Final content name or ID:") and the row
+   with the result box + icons */
+.table-code tr.code-title-row {
+    height: 4vh;
+    width: 40%;
+}
+
+.table-code td.code-title {
+    position: relative;
+    width: 100%;
+    font-size: 22px;
+}
+
+.table-code tr.code-row {
+    display: inline-flex;
+}
+
+#utmSource,
+#utmMedium,
+#utmCampaign {
+    display: block;
+}
+
+/* "(not required)" next to the Term label */
+.label-note {
+    font-size: 75%;
+}
+
+/* Wide tooltip of the Final UTM Link */
+.infobox.infobox--wide {
+    max-width: 600px !important;
+    width: 600px;
+}
+
+/*-----------NOTICES (toast)------------
+   Created by notify() in script.js: replaces the old alert() popups.
+   Slides up from the bottom and fades out by itself. */
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translate(-50%, 16px);
+    /* max-content: with left: 50% the box would otherwise shrink to half
+       the screen and wrap mid-word */
+    width: max-content;
+    max-width: min(560px, calc(100vw - 32px));
+    padding: 12px 18px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    color: var(--color-white);
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    overflow-wrap: anywhere; /* long links break, normal words do not */
+    opacity: 0;
+    pointer-events: none;
+    z-index: 100;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.toast--success {
+    background-color: var(--color-primary-dark);
+}
+
+.toast--error {
+    background-color: var(--color-danger);
 }
