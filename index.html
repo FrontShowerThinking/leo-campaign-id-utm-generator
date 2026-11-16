@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta hhtp-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" type="text/css" href="helperV2.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>
+        ID & UTM Generator Leo Pharma
+    </title>
+</head>
+
+<body bgcolor="#68a17c">
+    <section class="wrapper-col ">
+        <div class="" id="logoBox" style="">
+            <img src="assets/img/logreen.png">
+        </div>
+        <!-- Pre-form Tag Generator -->
+        <div class="preform-txt col" id="preform-txt-box"><strong style="text-transform: uppercase;">Campaign ID & UTM Generator</strong></div>
+        <br>
+        <div class="preform-txt col" id="preform-txt-box">Click on the button to generate the Campaign ID.</div>
+        <form onsubmit="" class="col" style="font-family: Arial, sans-serif;">
+            <table class="tg ">
+                <!-- LABEL -->
+                <tr class="main-label">
+                    <td colspan="2" class="main-label" style="">
+                        <div class="text-label ">CAMPAIGN ID GENERATOR</div>
+                        <div class="cont-logo">
+                            <img class="logo-label" src="assets/img/leo-logo.png" style="filter: invert(1);max-width: 55px;">
+                        </div>
+                    </td>
+                </tr>
+                <!-- ***********************************************
+                                COUNTRY
+             ***************************************************  -->
+                <tr>
+                    <!-- label name column -->
+                    <td class="label-col">
+                        <span class="text-table">Country</span>
+                        <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                        <div class="infobox">Country that is sending the email.</div></span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <select class="sel-code req country-input" required="">
+                                <option value="" disabled selected>Select country</option>
+                                <option value="DZ">Algeria (DZ)</option>
+                                <option value="AU">Australia (AU)</option>
+                                <option value="AT">Austria (AT)</option>
+                                <option value="BE">Belgium (BE)</option>
+                                <option value="BR">Brazil (BR)</option>
+                                <option value="CA">Canada (CA)</option>
+                                <option value="CZ">Czech Republic (CZ)</option>
+                                <option value="CN">China (CN)</option>
+                                <option value="DK">Denmark (DK)</option>
+                                <option value="EG">Egypt (EG)</option>
+                                <option value="FI">Finland (FI)</option>
+                                <option value="FR">France (FR)</option>
+                                <option value="DE">Germany (DE)</option>
+                                <option value="LP">Global (LP)</option>
+                                <option value="GR">Greece (GR)</option>
+                                <option value="HK">Hong Kong (HK)</option>
+                                <option value="HU">Hungary (HU)</option>
+                                <option value="ID">Indonesia (ID)</option>
+                                <option value="IE">Ireland (IE)</option>
+                                <option value="IT">Italy (IT)</option>
+                                <option value="JO">Jordan (JO)</option>
+                                <option value="JP">Japan (JP)</option>
+                                <option value="KR">Korea (KR)</option>
+                                <option value="KW">Kuwait (KW)</option>
+                                <option value="LU">Luxemburg (LU)</option>
+                                <option value="MY">Malaysia (MY)</option>
+                                <option value="MX">Mexico (MX)</option>
+                                <option value="MA">Morocco (MA)</option>
+                                <option value="NL">Netherlands (NL)</option>
+                                <option value="NZ">New Zealand (NZ)</option>
+                                <option value="NO">Norway (NO)</option>
+                                <option value="PH">Philippines (PH)</option>
+                                <option value="PL">Poland (PL)</option>
+                                <option value="PT">Portugal (PT)</option>
+                                <option value="RO">Romania (RO)</option>
+                                <option value="RU">Russia (RU)</option>
+                                <option value="SA">Saudi Arabia (SA)</option>
+                                <option value="SG">Singapore (SG)</option>
+                                <option value="SK">Slovakia (SK)</option>
+                                <option value="ES">Spain (ES)</option>
+                                <option value="LK">Sri Lanka (LK)</option>
+                                <option value="SE">Sweden (SE)</option>
+                                <option value="CH">Switzerland (CH)</option>
+                                <option value="TW">Taiwan (TW)</option>
+                                <option value="TH">Thailand (TH)</option>
+                                <option value="AE">United Arab Emirates (AE)</option>
+                                <option value="UK">United Kingdom (UK)</option>
+                                <option value="US">United States (US)</option>
+                                <option value="VN">Vietnam (VN)</option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+                <!--  *************************************
+                                DATE
+              ******************************************  -->
+                <tr>
+                    <!-- label name column -->
+                    <td class="label-col">
+                        <span class="text-table">Date</span>
+                        <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                        <div class="infobox">Date when the materials are sent to the Production Team.</div></span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col" style="">
+                        <div class="" id="containerDate">
+                            <span class="" style="font-weight:normal;color:white;text-align: center;right: 25%;" class="">
+                                <input type="text" name="date" class="sel-code" value="" style="display: none;">
+                                <span style="font-size: 0.8em;">
+                                    <select id="year" class="mask" onchange="setDate()">
+                                        <option value="" disabled selected>YYYY</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2026">2027</option>
+                                    </select>
+                                </span>
+                                <span>/</span>
+                                <select id="month" class="mask" required="" onchange="setDate()">
+                                    <option value="" disabled selected>MM</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
+                                    <option value="06">06</option>
+                                    <option value="07">07</option>
+                                    <option value="08">08</option>
+                                    <option value="09">09</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+                <!--  **********************************************
+                                SOURCE NAME
+              **************************************************** -->
+                <!-- label name column -->
+                <tr>
+                    <td class="option-col">
+                        <span class="text-table">Source
+                            <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                            <div class="infobox">Where will this content be found or received from?</div></span>
+                        </span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <select class="sel-code req" required="" id="source">
+                                <option value="" disabled selected>Select your source</option>
+                                <option value="AE">Approved Email</option>
+                                <option value="Banner">Banner</option>
+                                <option value="SFMC">Mass Email (SFMC)</option>
+                                <option value="SM">Social Media</option>
+                                <option value="3rd">3rd Party Email</option>
+                                <option value="QR">QR Code</option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+                <!-- ********************************************
+                              SPECIALTY NAME
+              *********************************************** -->
+                <!-- label name column -->
+                <tr>
+                    <td class="option-col">
+                        <span class="text-table">Specialty
+                            <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                            <div class="infobox">Which audience/segment is the content for? If this content will be used for more than one audience, for tracking purposes it is best to generate a different campaign ID for each audience.</div></span>
+                        </span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <select class="sel-code req" required="">
+                                <option value="" disabled selected>Select the speciality</option>
+                                <option value="HC">All HCPs (non sends)</option>
+                                <option value="AN">Anesthesiologist</option>
+                                <option value="DE">Dermatologist</option>
+                                <option value="GP">General Practitioner</option>
+                                <option value="HA">Hermatologist</option>
+                                <option value="IN">Internal</option>
+                                <option value="NU">Nurse</option>
+                                <option value="OB">Obstetrician</option>
+                                <option value="ON">Oncologist</option>
+                                <option value="OS">Organ Specialist</option>
+                                <option value="OT">Other</option>
+                                <option value="PA">Patients</option>
+                                <option value="PE">Pediatrician</option>
+                                <option value="PH">Pharmacist</option>
+                                <option value="SG">Surgeon</option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+                <!--  **************************************
+                           CONTENT CATEGORY
+              *******************************************  -->
+                <tr>
+                    <!-- label name column -->
+                    <td class="label-col">
+                        <span class="text-table">Content Category
+                            <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                            <div class="infobox">Is this content related to a particular product (Below Brand) or is it Above Brand?</div></span>
+                        </span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <select class="sel-code req" required="">
+                                <option value="" disabled selected>Select the category</option>
+                                <option value="AB">Above Brand</option>
+                                <option value="PROM">Below Brand</option>
+                                <option value="INT">Internal email/newsletter</option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+                <!-- ******************************************
+                             PRODUCTS
+              ********************************************* -->
+                <tr>
+                    <!-- label name column -->
+                    <td class="label-col">
+                        <span class="text-table">Products/Topics
+                            <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                            <div class="infobox">If this is Above Brand content, choose "No Product".</div></span>
+                        </span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <select class="sel-code req" required="">
+                                <option value="" disabled selected>Select the product/topic</option>
+                                <option value="" disabled>-Products-</option>
+                                <option value="NOP">No Product</option>
+                                <option value="ADT">Adtralza/Adbry</option>
+                                <option value="ADV">Advantan</option>
+                                <option value="ANZ">Anzupgo</option>
+                                <option value="DAI">Daivo Range</option>
+                                <option value="ENS">Enstilar</option>
+                                <option value="FIN">Finacea/Skinoren</option>
+                                <option value="FUC">Fuci Range</option>
+                                <option value="INN">Innohep</option>
+                                <option value="KYN">Kyntheum</option>
+                                <option value="PIM">Pimafucort</option>
+                                <option value="PRO">Protopic</option>
+                                <option value="TRV">Travocort/Travogen</option>
+								<option value="SPV">Spevigo</option>
+                                <option value="" disabled>-Topics-</option>
+                                <option value="LEO">LEO</option>
+                                <option value="CON">LEO_Congress</option>
+                                <option value="DMX">LEO_DERMX</option>                  
+                                <option value="TAP">TA_Psoriasis</option>
+                                <option value="TA_AD">TA_AD</option>	
+                                <option value="TA_CHE">TA_CHE</option>							
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+                <!-- ******************************************
+                          CAMPAIGN NAME
+              ******************************************  -->
+                <tr>
+                    <!-- label name column -->
+                    <td class="label-col">
+                        <span class="text-table">Campaign Name
+                            <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                            <div class="infobox">The campaign name may be the same across multiple emails or content if they are related to one single campaign or initiative. <br>Please do not include "?" within the text of the Campaign Name description. </div></span>
+                        </span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <input name="campName" id="campName" class="req sel-code tag-txt" type="text" value="" placeholder="max. 30 char." maxlength="30" style="width:180px;border-radius: 8px white; height: 20px;">
+                    </td>
+                </tr>
+                <!-- ******************************************
+                          EMAIL DESCRIPTION 
+              ******************************************  -->
+                <!-- label name column -->
+                <tr>
+                    <td class="option-col">
+                        <span class="text-table">Email Description
+                            <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                            <div class="infobox">The email description describes this particular piece of content within the overall campaign. You might also add indicators at the end of the email description in case the same content is used for other languages ("_FR" and "_EN") or for other reasons ("_target" and "_notarget"). <br>Please do not include "?" within the text of the Email description.</div></span>
+                        </span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <input name="mailDesc" id="mailDesc" class="req sel-code tag-txt" type="text" value="" placeholder="max. 25 char." maxlength="25" style="width:180px;border-radius: 8px white; height: 20px;">
+                        </span>
+                    </td>
+                </tr>
+                <!-- ********************************************
+                                    
+                          ACTIVITY TYPE
+
+              *********************************************** -->
+                <tr>
+                    <!-- label name column -->
+                    <td class="label-col">
+                        <span class="text-table">Activity Type</span>
+                        <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                        <div class="infobox">The activity type describes this particular piece of content within the overall campaign.</div></span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <select class="sel-code req" required="" id="actType">
+                                <option value="" disabled selected>Select the Campaign Type</option>
+                                <option value="AE">Approved Email</option>
+                                <option value="ABMAIL">AB Email Campaign</option>
+                                <option value="EXHIB">Exhibition Stand</option>
+                                <option value="TEST">Internal Test Send</option>
+                                <option value="JRN">Journey Email</option>
+                                <option value="JRN_R">Journey Remarketing Email</option>
+                                <option value="LB">Leave Behind</option>
+                                <option value="EMAIL">Mass Email Send</option>
+                                <option value="EMAIL_R">Mass Email Remarketing Send</option>
+                                <option value="PR_ADV">Print Advert</option>
+                                <option value="SM">Social Media</option>
+                                <option value="BANNER">Website Banner</option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+                <!-- ********************************************
+                            CONTENT CATEGORY
+              *********************************************** -->
+                <tr>
+                    <!-- label name column -->
+                    <td class="label-col">
+                        <span class="text-table">Content Category</span>
+                        <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                        <div class="infobox">The content category description describes the type of content category the email is.
+                        </div></span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <select class="sel-code req" required="">
+                                <option value="" disabled selected>Select the Content Category</option>
+                                <option value="6">Corporate</option>
+                                <option value="0">Informative</option>
+                                <option value="7">Medical</option>
+                                <option value="5">Patients</option>
+                                <option value="8">Product</option>
+                                <option value="1">Promotional</option>
+                                <option value="2">Scientific</option>
+                                <option value="3">Training</option>
+                                <option value="4">Value Tools</option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+                <!-- ********************************************
+                            CTA CATEGORY
+              *********************************************** -->
+                <tr>
+                    <!-- label name column -->
+                    <td class="label-col">
+                        <span class="text-table">CTA Category</span>
+                        <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                        <div class="infobox">The content category description describes the type of CTA content the email has.</div></span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <select class="sel-code req" required="">
+                                <option value="" disabled selected>Select the CTA Category</option>
+                                <option value="1">Click to Web</option>
+                                <option value="7">Document</option>
+                                <option value="6">Engage</option>
+                                <option value="0">Informative</option>
+                                <option value="2">Register</option>
+                                <option value="3">Subscription</option>
+                                <option value="8">Survey</option>
+                                <option value="5">Telemarketing</option>
+                                <option value="4">Webinar</option>
+                                <option value="9">Webinar Tools</option>
+                                <option value="10">None</option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+                <!-- ********************************************
+                           BUSINESS UNIT
+              *********************************************** -->
+                <tr>
+                    <!-- label name column -->
+                    <td class="label-col">
+                        <span class="text-table">Business Unit</span>
+                        <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                        <div class="infobox">Department that is sending out the campaign.</div></span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <select class="sel-code req" required="">
+                                <option value="" disabled selected>Select the Business Unit</option>
+                                <option value="D">Dermatology</option>
+                                <option value="T">Thrombosis</option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <!-- Create Code button -->
+        <button id="tagger" class="col">
+            <span class="col" style="font-family: &#39;IBM Plex Sans&#39;, Arial, sans-serif;">Create Code</span>
+        </button>
+        <!-- Content Code Creator -->
+        <table class="col table-code" id="tagBox" style="">
+            <tr style="height: 4vh;width: 40%;">
+                <td style="position: relative;width: 100%;font-size: 22px;">
+                    <span>
+                        Final content name or ID:
+                        <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                        <div class="infobox">If you need to make adjustments to the generated nomenclature: return to the form, make the changes, and then click the "Create Code" button again to see the changes reflected.</div></span>
+                    </span>
+                </td>
+            </tr>
+            <tr style="display: inline-flex;">
+                <td class="bgCode">
+                    <div class="white-square">
+                        <!-- 
+              FINAL CODE 
+            -->
+                        <input value="" name="finalTag" id="finalCode" type="text" class="white-square container-code" readonly="readonly">
+                        <!-- 
+              FINAL CODE CONT
+             -->
+                        <div id="finalCodeCont" class="finalCodeHyde" style="width: 100%;display: none;"></div>
+                    </div>
+                </td>
+                <!-- copy clipboard button -->
+                <td class="cont-icon copy-icon">
+                    <img class="icon " src="assets/img/copy.png" alt="copy to clipboard" title="Copy to clipboard">
+                </td>
+                <!-- edit clipboard button -->
+                <td class="cont-icon edit-icon">
+                    <img class="icon" src="assets/img/edit.png" alt="Edit code" title="Edit code">
+                </td>
+                <td class="cont-icon confirm-icon confirm-icon-code">
+                    <img class="icon" src="assets/img/confirm.png" alt="Confirm code" title="Confirm code">
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <!--  **********************************************
+        
+        UTM GENERATOR
+
+**************************************************** -->
+        <!-- Pre-form UTM Generator -->
+        <div class="preform-txt col" id="pre-utm">After using the above Campaign ID Generator to generate your content ID,<br>use this UTM Link Generator to generate a link with your content ID and other relevant parameters.</div>
+        <form onsubmit="return false" class="col" style="font-family: Arial, sans-serif;">
+            <table class="tg" id="utmTable">
+                <!--  LABEL -->
+                <tr class="main-label">
+                    <td colspan="2" class="main-label" style="">
+                        <div class="text-label" id="utmLabel">UTM GENERATOR</div>
+                    </td>
+                </tr>
+                <!--  **********************************************
+                                UTM-LINK
+              **************************************************** -->
+                <!-- label name column -->
+                <tr>
+                    <td class="option-col">
+                        <span class="text-table">Link</span>
+                        <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                        <div class="infobox">Link</div></span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <input class="utmTxt utmTxt-req" required="" placeholder="https://www.yourlink.com">
+                        </span>
+                    </td>
+                    <!--  **********************************************
+                                UTM-SOURCE
+              **************************************************** -->
+                    <!-- label name column -->
+                <tr>
+                    <td class="option-col">
+                        <span class="text-table">Source</span>
+                        <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                        <div class="infobox">Will indicate the "Channel" of this campaign</div></span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <input id="utmSource" class="utmTxt utmTxt-req" type="text" readonly style="display: block;">
+                        </span>
+                    </td>
+                </tr>
+                <!--  **********************************************
+                              UTM-MEDIUM
+              **************************************************** -->
+                <!-- label name column -->
+                <tr>
+                    <td class="option-col">
+                        <span class="text-table">Medium</span>
+                        <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                        <div class="infobox">Will indicate the "Activity Type" of this campaign</div></span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <input id="utmMedium" class="utmTxt utmTxt-req" type="text" readonly style="display: block;">
+                        </span>
+                    </td>
+                </tr>
+                <!--  **********************************************
+          UTM-CAMPAIGN - Autopopulated with Campaign field from above
+        **************************************************** -->
+                <tr>
+                    <!-- label name column -->
+                    <td class="label-col">
+                        <span class="text-table">Campaign</span>
+                        <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                        <div class="infobox">Will indicate the "Campaign" Name</div></span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <input id="utmCampaign" class="utmTxt utmTxt-req" type="text" readonly style="display: block;">
+                            <!-- <div class="utmFake">{{campaignName}}</div> -->
+                        </span>
+                    </td>
+                </tr>
+                <!--  **********************************************
+          UTM-CONTENT - Autopopulated with Content ID generated above
+        **************************************************** -->
+                <tr>
+                    <!-- label name column -->
+                    <td class="label-col">
+                        <span class="text-table">Content ID</span>
+                        <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                        <div class="infobox">Will indicate the "Final ID Content Name" of this campaign</div></span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <input id="utmContent" class="utmTxt utmTxt-req" type="text" readonly value="">
+                        </span>
+                    </td>
+                </tr>
+                <!--  **********************************************
+          TERM - not required
+        **************************************************** -->
+                <tr>
+                    <!-- label name column -->
+                    <td class="label-col">
+                        <span class="text-table">Term<font style="font-size:75%;"> (not required)</font>
+                            <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                            <div class="infobox">Use this field for any other attributes you want to include or track. This can be a term to distinguish one link from another, such as "utm_term=target", or it can pull an attribute from the SFMC database, such as %%AccountId%%, to track a specific attribute of each subscriber that clicks.</div></span>
+                        </span>
+                    </td>
+                    <!-- option selector column -->
+                    <td class="option-col">
+                        <span style="font-weight:normal;color:#000">
+                            <input id="utmTarget" class="utmTxt" type="text" name="target" value="" placeholder="max. 25 char." maxlength="25">
+                        </span>
+                    </td>
+                </tr>
+                <!-- End Inputs -->
+            </table>
+        </form>
+        <!-- UTM Link Button -->
+        <button class="col" id="utmGen">
+            <span class="col" style="font-family: &#39;IBM Plex Sans&#39;, Arial, sans-serif;">Generate Link</span>
+        </button>
+        <!-- Link UTM block -->
+        <table class="col table-code " style="">
+            <tr style="height: 4vh;width: 40%;">
+                <td style="position: relative;width: 100%;font-size: 22px;">
+                    <span>Final UTM Link:
+                        <span class="inf-wrap"><img class="inf" src="assets/img/info.png">
+                        <div class="infobox" style="max-width: 600px !important;width: 600px;">If you need to make adjustments to the complete generated UTM URL: If the change is to the initial "Link" itself, return to the "UTM Generator" form and adjust the link, then click the "Generate Link" button again to see the changes reflected. For any other changes, return to the "Campaign ID Generator" form and make the changes, click the "Create Code" button, then click the "Generate Link" button from the "UTM Generator."</div></span>
+                    </span>
+                </td>
+            </tr>
+            <tr style="display: inline-flex;">
+                <td class="bgCode">
+                    <div class="white-square">
+                        <!-- VISIBLE UTM INPUT -->
+                        <input value="" name="finalUtm" readonly="readonly" id="finalCode" type="text" class="white-square container-code">
+                        <!-- HIDDEN UTM CODE -->
+                        <div id="finalCodeCont" class="" style="width: 100%;display: none;"></div>
+                    </div>
+                </td>
+                <!-- copy clipboard button -->
+                <td onclick="" class="cont-icon copy-icon">
+                    <img class="icon " src="assets/img/copy.png" alt="copy to clipboard" title="Copy to clipboard">
+                    <!-- Animated Message -->
+                    <span class="copy-icon-message" aria-hidden="true">Copied!</span>
+                </td>
+                <!-- edit clipboard button -->
+                <td onclick="" class="cont-icon edit-icon">
+                    <img class="icon" src="assets/img/edit.png" alt="Edit code" title="Edit code">
+                </td>
+                <td class="cont-icon confirm-icon">
+                    <img class="icon" src="assets/img/confirm.png" alt="Confirm code" title="Confirm code">
+                </td>
+            </tr>
+        </table>
+    </section>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <script type="text/javascript" src="assets/js/script.js"></script>
+    <!-- <script type="text/javascript" src="assets/js/legacy.js"></script> -->
+    <script type="text/javascript">
+    console.log('HTML V3');
+    </script>
+</body>
+
+</html>

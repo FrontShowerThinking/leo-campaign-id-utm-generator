@@ -1,0 +1,58 @@
+body{
+	margin: 0px !important;
+}
+
+/*POSITION*/
+
+.outbox{
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.outbox-center-X{
+	position: relative;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+.outbox-center-Y{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.inbox{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.inbox-center-X{
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+.inbox-center-Y{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+/*LAYOUT*/
+
+
+/*DESIGN*/
+
+.shadow{
+  box-shadow: 5px 8px 5px #2c2a2a66;
+}
+
+/*@media screen and (min-width: 800px) {
+  .column {
+    flex-basis: 1
+  }
+ }*/

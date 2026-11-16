@@ -1,0 +1,896 @@
+/*=================================================================
+  LEO Pharma — Campaign ID & UTM Generator
+  Modernized visual layer. No JS-facing selectors were removed or
+  renamed: every id/class the script.js relies on keeps working
+  exactly as before.
+=================================================================*/
+
+/*-----------VARIABLES (COLORS & TOKENS)------------*/
+:root {
+    /* Brand */
+    --color-primary: #1c3f2e;        /* Verde bosque oscuro (cabeceras) */
+    --color-primary-dark: #122b1f;
+    --color-secondary: #4f9a6e;      /* Verde fresco (acentos, bordes) */
+    --color-secondary-light: #e5f2ea;
+    --color-accent: #ff5a1f;         /* Naranja - CTA principal */
+    --color-accent-dark: #e2470f;
+    --color-success: #1fae62;
+
+    /* Neutrals */
+    --color-bg-page-1: #eef4f0;
+    --color-bg-page-2: #dfeee5;
+    --color-bg-card: #ffffff;
+    --color-bg-input: #f5f8f6;
+    --color-bg-input-hover: #eef3f0;
+    --color-border: #dfe7e2;
+    --color-border-strong: #c9d6cf;
+    --color-text: #1f2b24;
+    --color-text-muted: #64756c;
+    --color-white: #ffffff;
+    --color-black: #000000;
+
+    /* Feedback: border colors applied via .field-invalid / .field-valid */
+    --color-danger: #e64545;
+
+    /* Elevation */
+    --shadow-xs: 0 1px 2px rgba(20, 40, 30, 0.06);
+    --shadow-sm: 0 2px 8px rgba(20, 40, 30, 0.08);
+    --shadow-md: 0 8px 24px rgba(20, 40, 30, 0.10);
+    --shadow-lg: 0 20px 45px rgba(18, 43, 31, 0.18);
+
+    /* Radii */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+
+    /* Legacy aliases kept in case anything else references them */
+    --color-bg-dark: #282828;
+    --color-bg-light: #f5f8f6;
+    --color-whitesmoke: #f5f5f5;
+    --color-shadow: #444444;
+    --color-info-border: #d8e2dc;
+    --color-info-text: #33413a;
+}
+
+/*-----------RESET / BASE------------*/
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    color: var(--color-text);
+    background:
+        radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.5), transparent 45%),
+        linear-gradient(160deg, var(--color-bg-page-1) 0%, var(--color-bg-page-2) 55%, var(--color-primary) 220%);
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.total-cont {
+    width: 90%;
+}
+
+form {
+    padding: 0;
+    margin: 24px auto;
+    width: min(100%, 720px);
+}
+
+.wrapper-col {
+    background-color: transparent;
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+    padding: 32px 16px 10vh;
+    position: relative;
+}
+
+.col {
+    align-self: center;
+    justify-content: space-around;
+    display: flex;
+}
+
+hr {
+    width: min(100%, 720px);
+    max-width: 90%;
+    text-align: center;
+    border: none;
+    border-top: 1px dashed var(--color-border-strong);
+    margin: 44px auto;
+}
+
+/*-----------HEADER / LOGO------------*/
+
+/* Pinned to the page's top-left corner and taken out of flow on
+   purpose: it must sit at the same height as the "CAMPAIGN ID & UTM
+   GENERATOR" title without pushing that title (or anything else)
+   down the page. .wrapper-col (its containing block) is
+   position: relative. */
+#logoBox {
+    height: 100px;
+    background-color: transparent;
+    position: absolute;
+    top: 30px;
+    left: 28px;
+    margin: 0;
+    filter: drop-shadow(0 6px 14px rgba(18, 43, 31, 0.25));
+}
+
+#logoBox img {
+    height: 100%;
+}
+
+.preform-txt {
+    text-align: center;
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--color-primary-dark);
+    font-size: 1.05em;
+    margin-top: 4px;
+    margin-bottom: 1.5vh;
+    max-width: 640px;
+}
+
+#preform-txt-box:first-of-type,
+.preform-txt strong {
+    display: inline-block;
+    font-size: 1.6em;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    color: var(--color-primary-dark);
+    margin-bottom: 4px;
+}
+
+#pre-utm {
+    font-size: 1.02em;
+    margin-top: 0;
+    padding-top: 0;
+    color: var(--color-text-muted);
+}
+
+/*-----------FORM "CARD" (table used as a modern flex layout)------------*/
+
+.tg {
+    display: block;
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-bg-card);
+    box-shadow: var(--shadow-lg);
+}
+
+.tg tbody,
+form table tbody {
+    display: block;
+}
+
+.tg tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.15s ease;
+}
+
+.tg tr:last-child {
+    border-bottom: none;
+}
+
+.tg tr:not(.main-label):hover {
+    background-color: var(--color-secondary-light);
+}
+
+.tg td {
+    display: flex;
+    align-items: center;
+    position: relative;
+    border: none;
+    font-size: 15px;
+    overflow: visible;
+    padding: 14px 22px;
+    word-break: normal;
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    flex: 1 1 240px;
+}
+
+.tg .label-col,
+.tg .option-col {
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* First cell in a row = the label; second cell = the control.
+   We keep both classes' flex basis identical so rows line up in two
+   clean columns on desktop and stack gracefully on mobile. */
+.tg tr td:first-child {
+    flex: 0 1 260px;
+    color: var(--color-text);
+    font-weight: 500;
+}
+
+.tg tr td:last-child {
+    flex: 1 1 260px;
+}
+
+/*HEADER-LABEL (form title bar)*/
+
+.main-label {
+    background: linear-gradient(120deg, var(--color-primary) 0%, var(--color-primary-dark) 100%) !important;
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    position: relative;
+    border-bottom: none !important;
+    padding: 20px 24px !important;
+    font-size: 17px;
+    flex-wrap: nowrap !important;
+}
+
+.tg tr.main-label td {
+    flex: 1 1 auto !important;
+    padding: 0 !important;
+    justify-content: space-between;
+}
+
+.text-label {
+    width: auto;
+    float: none;
+    color: var(--color-whitesmoke);
+    font-size: 1.15em;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-align: left;
+    padding-top: 0;
+}
+
+.cont-logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-label {
+    max-width: 50px !important;
+    opacity: 1;
+}
+
+#utmLabel {
+    width: 100%;
+    text-align: left;
+    padding-top: 0;
+}
+
+/*-----------LABEL TEXT + INFO TOOLTIP------------*/
+
+.text-table {
+    font-size: 14.5px;
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-weight: 600;
+    color: var(--color-text);
+    display: inline-flex;
+    align-items: center;
+    /* No gap here: some rows put .inf-wrap directly inside this flex
+       container (gap would apply), others put it as a plain sibling
+       of this span inside the table cell instead (gap would not
+       apply there). Keeping the spacing solely on .inf-wrap's own
+       margin-left below is what makes the icon sit the same distance
+       from the label text on every row. */
+}
+
+/* .inf and its .infobox are wrapped together in index.html as
+   <span class="inf-wrap"><img class="inf">...<div class="infobox">
+   </span> specifically so this tiny (icon-sized) span - not the wide
+   table cell or label text - is the positioned ancestor the tooltip
+   anchors to. That keeps the tooltip right under the icon that opens
+   it on every row, regardless of how long that row's label text is. */
+.inf-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 6px;
+}
+
+.inf {
+    width: 16px;
+    opacity: 0.55;
+    z-index: 1;
+    border-radius: 50%;
+    transition: opacity 0.15s ease;
+}
+
+.inf:hover {
+    opacity: 1;
+}
+
+/* The tooltip must never overlap the .inf icon that triggers it: if it
+   did, the cursor would appear to "leave" the icon the instant the
+   tooltip is drawn on top of it, which hides the tooltip, which then
+   re-triggers the hover on the now-revealed icon - an endless
+   show/hide flicker. Anchoring it to .inf-wrap (icon-sized, see
+   above) keeps it snug against the icon instead of drifting off
+   toward wherever the table cell happens to end.
+   A dark fill (instead of white on the white form background) gives
+   it contrast so it doesn't visually merge with the card behind it,
+   and pointer-events: none is a safety net: the tooltip is read-only,
+   so letting the cursor "pass through" it means the icon underneath
+   keeps receiving the hover no matter how the tooltip is sized. */
+.infobox {
+    display: none;
+    color: var(--color-white);
+    padding: 8px 12px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-primary-dark);
+    /* A fixed width, not max-width: .inf-wrap (its containing block)
+       is only icon-sized, so an auto/shrink-to-fit width would use
+       that sliver as its available space and wrap the text into a
+       tall, narrow column. An explicit width sidesteps that. */
+    width: 230px;
+    z-index: 30;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.35;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    margin-top: 6px;
+    pointer-events: none;
+}
+
+/*-----------FORM CONTROLS------------*/
+
+select,
+input {
+    text-align: left;
+}
+
+select,
+.country-input,
+.utmTxt,
+input[type="text"] {
+    width: 100%;
+    height: 42px;
+    border-radius: var(--radius-sm);
+    color: var(--color-text);
+    background-color: var(--color-bg-input);
+    border: 1.5px solid var(--color-border);
+    max-width: 220px;
+    padding: 0 12px;
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-size: 14px;
+    transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'><path d='M5.5 8l4.5 4.5L14.5 8' stroke='%234f9a6e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 32px;
+    /* Wider than the shared 220px cap above: the placeholder options
+       ("Select the Content Category", "Select the Campaign Type"...)
+       need the extra room to read in full instead of being clipped. */
+    max-width: 320px;
+}
+
+select:hover,
+.country-input:hover,
+.utmTxt:hover,
+input[type="text"]:hover {
+    background-color: var(--color-bg-input-hover);
+    border-color: var(--color-border-strong);
+}
+
+select:focus,
+.country-input:focus,
+.utmTxt:focus,
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+    background-color: var(--color-white);
+    box-shadow: 0 0 0 4px rgba(79, 154, 110, 0.18);
+}
+
+select:disabled,
+input:disabled,
+.utmTxt[readonly],
+input[readonly] {
+    color: var(--color-text-muted);
+    cursor: default;
+}
+
+/* Applied by script.js (addClass) to a required field left empty at
+   submit time, replacing the old inline red box-shadow. !important is
+   needed because some of these elements are also matched by the more
+   specific input[type="text"] rule above, which sets its own
+   border-color. Removed again (removeClass) as soon as the field's
+   value changes. */
+.field-invalid {
+    border-color: var(--color-danger) !important;
+}
+
+/* Applied by script.js to a field once it has a value (either the
+   user filled it in, or it was auto-populated after "Create Code"),
+   replacing the old inline green box-shadow with the same
+   border + background treatment used everywhere else in this form. */
+.field-valid {
+    border-color: var(--color-success) !important;
+    background-color: var(--color-white) !important;
+    font-weight: 600;
+}
+
+.utmTxt[readonly],
+input[readonly]:not(#finalCode) {
+    background-color: var(--color-bg-input);
+}
+
+.utmTxt {
+    max-width: 260px;
+}
+
+select,
+option {
+    cursor: pointer;
+}
+
+/* Campaign name / description text inputs (inline style width overridden gracefully) */
+.tag-txt {
+    max-width: 240px !important;
+    width: 100% !important;
+    height: 42px !important;
+    border-radius: var(--radius-sm) !important;
+}
+
+/*-----------COUNTRY SEARCHABLE SELECT (Select2)------------
+  Select2 hides the real <select class="country-input"> and inserts its
+  own styled container as the next sibling, so all of this restyles that
+  container to match the other inputs/selects in the form; .field-invalid
+  / .field-valid still get toggled by script.js on the (hidden) original
+  select, so we mirror those states onto the visible container with the
+  adjacent-sibling selectors at the bottom of this block. */
+.select2-container {
+    max-width: 320px;
+    width: 100% !important;
+    display: block;
+}
+
+.select2-container--default .select2-selection--single {
+    height: 42px;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-bg-input);
+    border: 1.5px solid var(--color-border);
+    transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 39px;
+    padding-left: 12px;
+    padding-right: 32px;
+    color: var(--color-text);
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: var(--color-text);
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 100%;
+    width: 32px;
+    top: 0;
+    right: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'><path d='M5.5 8l4.5 4.5L14.5 8' stroke='%234f9a6e' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    display: none;
+}
+
+.select2-container--default:hover .select2-selection--single,
+.select2-container--default .select2-selection--single:hover {
+    background-color: var(--color-bg-input-hover);
+    border-color: var(--color-border-strong);
+}
+
+.select2-container--default.select2-container--open .select2-selection--single,
+.select2-container--default.select2-container--focus .select2-selection--single {
+    outline: none;
+    border-color: var(--color-secondary);
+    background-color: var(--color-white);
+    box-shadow: 0 0 0 4px rgba(79, 154, 110, 0.18);
+}
+
+.select2-dropdown {
+    border: 1.5px solid var(--color-border-strong);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    overflow: hidden;
+}
+
+.select2-search--dropdown {
+    padding: 8px;
+}
+
+.select2-search--dropdown .select2-search__field {
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 6px 10px;
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-size: 13px;
+    outline: none;
+}
+
+.select2-search--dropdown .select2-search__field:focus {
+    border-color: var(--color-secondary);
+}
+
+.select2-results__option {
+    font-size: 14px;
+    padding: 8px 12px;
+}
+
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+    background-color: var(--color-secondary-light);
+    color: var(--color-primary-dark);
+}
+
+/* Mirror field-invalid / field-valid (toggled on the hidden <select> by
+   script.js) onto the visible Select2 container next to it. */
+.country-input.field-invalid + .select2-container .select2-selection--single {
+    border-color: var(--color-danger) !important;
+}
+
+.country-input.field-valid + .select2-container .select2-selection--single {
+    border-color: var(--color-success) !important;
+    background-color: var(--color-white) !important;
+}
+
+/*-----------DATE PICKER------------*/
+
+#containerDate {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#containerDate .mask {
+    height: 42px;
+    padding-right: 26px;
+    background-position: right 8px center;
+    background-size: 13px;
+}
+
+#year {
+    width: 112px;
+    max-width: 112px;
+    padding-left: 10px;
+}
+
+#month {
+    width: 92px;
+    max-width: 92px;
+    padding-left: 10px;
+}
+
+#containerDate span[style] {
+    color: var(--color-text-muted) !important;
+    font-weight: 600;
+}
+
+/*-----------BUTTONS (Create Code / Generate Link)------------*/
+
+button {
+    cursor: pointer;
+    margin-top: 32px;
+    font-size: 1.05em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+    color: var(--color-white);
+    border-radius: var(--radius-md);
+    border: none;
+    height: 50px;
+    width: 240px;
+    margin-bottom: 32px;
+    box-shadow: 0 10px 24px rgba(226, 71, 15, 0.32);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+button:hover {
+    color: var(--color-white);
+    background: linear-gradient(135deg, var(--color-accent-dark) 0%, var(--color-accent) 100%);
+    filter: brightness(1.03);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(226, 71, 15, 0.38);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 6px 14px rgba(226, 71, 15, 0.30);
+}
+
+/*-----------RESULT / CODE BOXES------------*/
+
+.table-code {
+    display: block;
+    font-family: 'IBM Plex Sans', Arial, sans-serif;
+    font-size: 1em;
+    color: var(--color-primary-dark);
+    padding: 24px;
+    background: var(--color-bg-card);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    width: min(100%, 720px);
+    margin: 0 auto;
+}
+
+.table-code tr {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto !important;
+}
+
+.table-code tbody,
+.table-code thead {
+    display: block;
+    width: 100%;
+}
+
+.table-code td {
+    border: none;
+}
+
+.table-code tr:first-child td {
+    font-size: 15px !important;
+    font-weight: 600;
+    color: var(--color-text);
+    padding-bottom: 12px;
+}
+
+.table-code tr:last-child {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+}
+
+.bgCode {
+    flex: 1 1 auto;
+    min-width: 220px;
+}
+
+.white-square {
+    width: auto;
+    height: auto;
+    position: relative;
+    color: var(--color-black);
+}
+
+.container-code {
+    width: 100%;
+    max-width: 100%;
+    height: 46px;
+    border: 1.5px solid var(--color-border-strong);
+    background-color: var(--color-bg-input);
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    letter-spacing: 0.03em;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 0.9em;
+    border-radius: var(--radius-sm);
+    padding: 0 14px;
+    color: var(--color-primary-dark);
+}
+
+/* #finalCode is reused for both result boxes; an ID selector is needed
+   here to outrank the generic input[type="text"] sizing rule above. */
+#finalCode.container-code {
+    width: 100%;
+    max-width: 100%;
+    height: 46px;
+}
+
+.container-code:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 4px rgba(255, 90, 31, 0.15);
+}
+
+#finalCodeCont {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+/*-----------ACTION ICONS (copy / edit / confirm)------------*/
+
+.cont-icon {
+    position: relative;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+/* copy.png / edit.png / confirm.png are solid white glyphs on a
+   transparent background, so they need a dark tile behind them to
+   read at all - on the light input-colored background they had
+   before, a white icon was effectively invisible. */
+.icon {
+    width: 40px;
+    height: 40px;
+    padding: 9px;
+    cursor: pointer;
+    opacity: 1;
+    transition: 0.2s ease;
+    border: 1.5px solid var(--color-primary);
+    background-color: var(--color-primary);
+    border-radius: var(--radius-sm);
+    filter: none;
+}
+
+.icon:hover {
+    transition: 0.15s ease;
+    opacity: 1;
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-1px);
+}
+
+.confirm-icon,
+.edit-icon {
+    display: none;
+}
+
+.copy-icon-message {
+    background: var(--color-primary-dark);
+    border-radius: var(--radius-sm);
+    color: var(--color-white);
+    display: block;
+    font-size: 0.72em;
+    font-weight: 600;
+    opacity: 0;
+    padding: 6px 12px;
+    position: absolute;
+    border: none;
+    z-index: 12;
+    text-shadow: none;
+    box-shadow: var(--shadow-sm);
+    top: -38px !important;
+    right: 0;
+    white-space: nowrap;
+}
+
+.utmFake {
+    width: 165px;
+    height: 30px;
+    background-color: var(--color-white);
+    text-align: center;
+    font-size: 14px;
+    border-radius: var(--radius-sm);
+    font-family: 'IBM Plex Sans', Arial, sans-serif !important;
+}
+
+#utmCampaign {
+    display: none;
+}
+
+/*-----------TABLE SHADOW OVERRIDE (remove the old chunky border trick)------------*/
+
+form table {
+    box-shadow: var(--shadow-lg);
+    border-radius: var(--radius-lg);
+}
+
+input.sel-code {
+    /* intentionally left blank: JS toggles inline box-shadow for validation feedback */
+}
+
+/*-----------LEGACY BLOCK (kept, unused visually but harmless)------------*/
+
+#booking_container {
+    position: absolute;
+    height: 900px;
+    padding-top: 30px;
+    background: #ccc url(../img/forest-bg.jpg) no-repeat center top;
+    background-size: cover;
+    color: var(--color-white);
+    width: 100%;
+    z-index: 99;
+    border-bottom: 5px solid var(--color-accent);
+}
+
+/********************************************
+            MEDIA QUERIES
+*********************************************/
+
+@media screen and (max-width: 1500px) {
+    button {
+        margin-top: 24px;
+        height: 46px;
+        width: 220px;
+        font-size: 1em;
+    }
+    .logo-label {
+        width: 44px;
+    }
+    .tg td {
+        padding: 12px 18px;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .wrapper-col {
+        padding: 20px 12px 10vh;
+    }
+    form,
+    .table-code {
+        width: 100%;
+    }
+    .tg tr td:first-child,
+    .tg tr td:last-child {
+        flex: 1 1 100%;
+    }
+    .tg tr:not(.main-label) td:first-child {
+        padding-bottom: 4px;
+    }
+    .tg tr:not(.main-label) td:last-child {
+        padding-top: 0;
+    }
+    select,
+    .country-input,
+    .utmTxt,
+    input[type="text"],
+    .tag-txt {
+        max-width: 100%;
+    }
+    .main-label {
+        padding: 16px !important;
+    }
+    #logoBox {
+        height: 38px;
+        top: 16px;
+        left: 16px;
+    }
+    .preform-txt strong,
+    #preform-txt-box:first-of-type {
+        font-size: 1.3em;
+    }
+    .table-code tr:last-child {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .bgCode {
+        flex: 1 1 100%;
+    }
+}

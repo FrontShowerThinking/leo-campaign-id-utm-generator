@@ -1,0 +1,51 @@
+
+:root {
+  --bg: #ffffff;
+  --bg2: #F4F4F4;
+  --corp: #94C01C;
+  --corp2: #06A960;
+  --bgdark: #282828;
+}
+
+
+a{
+  color: var(--corp2);
+}
+
+/*COMMON STYLES*/
+
+body {
+  color: dimgray;
+}
+
+header{
+  background-color: var(--bg2);
+}
+
+
+
+/*LAYOUT*/
+
+
+
+
+
+
+
+
+form{
+
+  /*width: 40%;*/
+
+}
+
+
+
+
+
+
+
+
+
+
+
