@@ -106,7 +106,8 @@ $(function() {
 
     // ****** UTM GENERATOR FUNCTION ******
     $("#utmGen").click(function() {
-        $('input[name="finalUtm"]').val("");
+        $('[name="finalUtm"]').val("");
+        autoGrow($('[name="finalUtm"]'));
         // Select answered inputs
         $utmAns = $(".utmTxt").filter(function() {
             return this.value != "";
@@ -144,6 +145,7 @@ $(function() {
             $textCode = $codeHyde.text().slice(0, -1).includes('?') ? $codeHyde.text().slice(0, -1) : $codeHyde.text().slice(0, -1).replace(/&/, '?');
             $codeBox = $(this).next().find("#finalCode");
             $codeBox.val($textCode);
+            autoGrow($codeBox);
         }
 
     });
@@ -191,10 +193,8 @@ $(function() {
         // Sync hidden field and visible input
         $textIn = $(this).siblings(".bgCode").find("#finalCode").val();
         $textHyd = $(this).siblings(".bgCode").find("#finalCode");
-        $textHyd.contents().remove();
-        $textHyd.append($textIn);
-        // Select & copy Input text
-        $selText = $textHyd.text();
+        // Copy the field's current value (works for both the input and the textarea)
+        $selText = $textIn;
 
         function alertCopied() {
             alert(
@@ -245,3 +245,12 @@ $('#campName,#mailDesc').change(function() {
     //console.log(campVal);
     $(this).val(campVal);
 })
+// Resize the UTM textarea to fit its whole content
+function autoGrow($el) {
+    $el.filter("textarea").each(function() {
+        this.style.height = "auto";
+        this.style.height = this.scrollHeight + "px";
+    });
+}
+$(document).on("input", "textarea#finalCode", function() { autoGrow($(this)); });
+$(window).on("resize", function() { autoGrow($("textarea#finalCode")); });

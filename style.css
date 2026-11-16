@@ -718,6 +718,21 @@ button:active {
     height: 46px;
 }
 
+/* UTM result box: a textarea that wraps the full link and grows with
+   it (script.js resizes it to its scrollHeight), so long UTMs are never
+   clipped. break-all lets the URL break anywhere, since it has no spaces. */
+#finalCode.container-code--wrap {
+    display: block;
+    height: auto;
+    min-height: 46px;
+    padding: 12px 14px;
+    line-height: 1.5;
+    resize: none;
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
 .container-code:focus {
     outline: none;
     border-color: var(--color-accent);
